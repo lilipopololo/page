@@ -7,7 +7,7 @@ layout: default
     <div class="aside">
       <div class="info-card">
         <h1>YuJW</h1>
-        
+        <a href = "#">
       </div>
       <div id="particles-js"></div>
     </div>
