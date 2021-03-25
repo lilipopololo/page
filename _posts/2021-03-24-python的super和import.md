@@ -20,15 +20,13 @@ print(dir(Dog))
 ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'init_instance']
 
 pytorch 中经常有如下的形式出现
-class Module(nn.Module):
+class Module(nn.Module): #class XX(XX)的形式表示是继承
 def **init**(self):
 super(Module, self).**init**() # ......
 
-    def forward(self, x):
-        # ......
-        return x
-
 data = ..... #输入数据
+def forward(self, x): # ......
+return x
 
 # 实例化一个对象
 
@@ -42,4 +40,30 @@ module(data)
 
 # module.forward(data)
 
-forward
+forward 和 python 内置的**call**的区别
+class A():
+def **call**(self, param):
+
+        print('i can called like a function')
+        print('传入参数的类型是：{}   值为： {}'.format(type(param), param))
+
+        res = self.forward(param)
+        return res
+
+    def forward(self, input_):
+        print('forward 函数被调用了')
+
+        print('in  forward, 传入参数类型是：{}  值为: {}'.format( type(input_), input_))
+        return input_
+
+a = A()
+
+input_param = a('i')
+print("对象 a 传入的参数是：", input_param)
+
+output:
+i can called like a function
+传入参数的类型是：<class ‘str’> 值为： i
+forward 函数被调用了
+in forward, 传入参数类型是：<class ‘str’> 值为: i
+对象 a 传入的参数是： i
